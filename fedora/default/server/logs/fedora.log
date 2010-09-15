@@ -1,0 +1,160 @@
+INFO 2010-09-15 14:25:22.556 [main] (AuthFilterJAAS) using FEDORA_HOME: /Users/matt/Develop/projects/hydra-jetty/fedora/default
+INFO 2010-09-15 14:25:22.561 [main] (AuthFilterJAAS) initialised servlet filter: org.fcrepo.server.security.jaas.AuthFilterJAAS
+INFO 2010-09-15 14:25:22.901 [main] (Server) Starting up server
+INFO 2010-09-15 14:25:23.171 [main] (Server) Server home is /Users/matt/Develop/projects/hydra-jetty/fedora/default/server
+INFO 2010-09-15 14:25:23.197 [main] (BasicServer) Fedora Version: 3.4
+INFO 2010-09-15 14:25:23.198 [main] (BasicServer) Fedora Build Date: 2010-08-20 09:56:09 UTC+0100
+INFO 2010-09-15 14:25:23.198 [main] (BasicServer) Fedora Build Number: 8768
+INFO 2010-09-15 14:25:23.238 [main] (Server) Initializing org.fcrepo.server.storage.DefaultDOManager
+INFO 2010-09-15 14:25:23.315 [main] (Server) Initializing org.fcrepo.server.oai.FedoraOAIProviderModule
+INFO 2010-09-15 14:25:23.317 [main] (Server) Initializing org.fcrepo.server.security.DefaultBackendSecurity
+INFO 2010-09-15 14:25:23.318 [main] (Server) Initializing org.fcrepo.server.access.DefaultAccess
+INFO 2010-09-15 14:25:23.323 [main] (Server) Initializing org.fcrepo.server.storage.translation.DOTranslatorModule
+INFO 2010-09-15 14:25:23.614 [main] (Server) Initializing org.fcrepo.server.search.FieldSearchSQLModule
+INFO 2010-09-15 14:25:23.615 [main] (Server) Initializing org.fcrepo.server.management.ManagementModule
+INFO 2010-09-15 14:25:23.617 [main] (Server) Initializing org.fcrepo.server.security.DefaultAuthorization
+INFO 2010-09-15 14:25:23.957 [main] (Server) Initializing org.fcrepo.server.storage.ConnectionPoolManagerImpl
+INFO 2010-09-15 14:25:24.927 [main] (Server) Initializing org.fcrepo.server.validation.DOValidatorModule
+INFO 2010-09-15 14:25:24.929 [main] (Server) Initializing org.fcrepo.server.access.DynamicAccessModule
+INFO 2010-09-15 14:25:24.930 [main] (Server) Initializing org.fcrepo.server.messaging.MessagingModule
+INFO 2010-09-15 14:25:24.931 [main] (MessagingModule) Messaging Module is disabled.
+INFO 2010-09-15 14:25:24.931 [main] (Server) Initializing org.fcrepo.server.storage.DefaultExternalContentManager
+INFO 2010-09-15 14:25:25.003 [main] (Server) Initializing org.fcrepo.server.resourceIndex.ResourceIndexModule
+INFO 2010-09-15 14:25:25.007 [main] (Server) Initializing org.fcrepo.server.storage.lowlevel.akubra.AkubraLowlevelStorageModule
+INFO 2010-09-15 14:25:25.013 [main] (Server) Initializing org.fcrepo.server.management.BasicPIDGenerator
+INFO 2010-09-15 14:25:25.015 [main] (Server) Post-Initializing org.fcrepo.server.storage.DefaultDOManager
+INFO 2010-09-15 14:25:26.855 [main] (SQLUtilityImpl) Creating new table 'objectPaths' with command(s): 
+CREATE TABLE objectPaths (
+  tokenDbID int NOT NULL GENERATED ALWAYS AS IDENTITY,
+  token varchar(64) UNIQUE NOT NULL DEFAULT '',
+  path varchar(255) NOT NULL DEFAULT '',
+  PRIMARY KEY (tokenDbID));
+INFO 2010-09-15 14:25:26.968 [main] (SQLUtilityImpl) Creating new table 'datastreamPaths' with command(s): 
+CREATE TABLE datastreamPaths (
+  tokenDbID int NOT NULL GENERATED ALWAYS AS IDENTITY,
+  token varchar(199) UNIQUE NOT NULL DEFAULT '',
+  path varchar(255) NOT NULL DEFAULT '',
+  PRIMARY KEY (tokenDbID));
+INFO 2010-09-15 14:25:26.993 [main] (SQLUtilityImpl) Creating new table 'pidGen' with command(s): 
+CREATE TABLE pidGen (
+  namespace varchar(255) NOT NULL,
+  highestID int NOT NULL);
+INFO 2010-09-15 14:25:27.000 [main] (SQLUtilityImpl) Creating new table 'doRegistry' with command(s): 
+CREATE TABLE doRegistry (
+  doPID varchar(64) NOT NULL,
+  systemVersion smallint NOT NULL DEFAULT 0,
+  ownerId varchar(64),
+  objectState varchar(1) NOT NULL DEFAULT 'A',
+  label varchar(255) DEFAULT '',
+  PRIMARY KEY (doPID));
+INFO 2010-09-15 14:25:27.019 [main] (SQLUtilityImpl) Creating new table 'modelDeploymentMap' with command(s): 
+CREATE TABLE modelDeploymentMap (
+  cModel varchar(64) NOT NULL,
+  sDef varchar(64) NOT NULL,
+  sDep varchar(64) NOT NULL);
+INFO 2010-09-15 14:25:27.027 [main] (SQLUtilityImpl) Creating new table 'doFields' with command(s): 
+CREATE TABLE doFields (
+  pid varchar(64) NOT NULL,
+  label varchar(255),
+  state varchar(1) NOT NULL DEFAULT 'A',
+  ownerId varchar(64),
+  cDate bigint NOT NULL,
+  mDate bigint NOT NULL,
+  dcmDate bigint,
+  dcTitle CLOB,
+  dcCreator CLOB,
+  dcSubject CLOB,
+  dcDescription CLOB,
+  dcPublisher CLOB,
+  dcContributor CLOB,
+  dcDate CLOB,
+  dcType CLOB,
+  dcFormat CLOB,
+  dcIdentifier CLOB,
+  dcSource CLOB,
+  dcLanguage CLOB,
+  dcRelation CLOB,
+  dcCoverage CLOB,
+  dcRights CLOB);
+CREATE INDEX doFields_pid ON doFields (pid);
+INFO 2010-09-15 14:25:27.099 [main] (SQLUtilityImpl) Creating new table 'dcDates' with command(s): 
+CREATE TABLE dcDates (
+  pid varchar(64) NOT NULL,
+  dcDate bigint NOT NULL);
+CREATE INDEX dcDates_pid ON dcDates (pid);
+INFO 2010-09-15 14:25:27.154 [main] (Server) Post-Initializing org.fcrepo.server.oai.FedoraOAIProviderModule
+INFO 2010-09-15 14:25:27.161 [main] (Server) Post-Initializing org.fcrepo.server.security.DefaultBackendSecurity
+INFO 2010-09-15 14:25:27.166 [main] (Server) Post-Initializing org.fcrepo.server.access.DefaultAccess
+INFO 2010-09-15 14:25:27.166 [main] (Server) Post-Initializing org.fcrepo.server.storage.translation.DOTranslatorModule
+INFO 2010-09-15 14:25:27.166 [main] (Server) Post-Initializing org.fcrepo.server.search.FieldSearchSQLModule
+INFO 2010-09-15 14:25:27.168 [main] (Server) Post-Initializing org.fcrepo.server.management.ManagementModule
+INFO 2010-09-15 14:25:27.365 [main] (Server) Post-Initializing org.fcrepo.server.security.DefaultAuthorization
+INFO 2010-09-15 14:25:28.161 [main] (PolicyFinderModule) Loading repository policies...
+INFO 2010-09-15 14:25:28.162 [main] (PolicyFinderModule) Loading policy: /Users/matt/Develop/projects/hydra-jetty/fedora/default/data/fedora-xacml-policies/repository-policies/default/deny-apim-if-not-localhost.xml
+INFO 2010-09-15 14:25:28.266 [main] (PolicyFinderModule) Loading policy: /Users/matt/Develop/projects/hydra-jetty/fedora/default/data/fedora-xacml-policies/repository-policies/default/deny-inactive-or-deleted-objects-or-datastreams-if-not-administrator.xml
+INFO 2010-09-15 14:25:28.271 [main] (PolicyFinderModule) Loading policy: /Users/matt/Develop/projects/hydra-jetty/fedora/default/data/fedora-xacml-policies/repository-policies/default/deny-policy-management-if-not-administrator.xml
+INFO 2010-09-15 14:25:28.275 [main] (PolicyFinderModule) Loading policy: /Users/matt/Develop/projects/hydra-jetty/fedora/default/data/fedora-xacml-policies/repository-policies/default/deny-purge-datastream-if-active-or-inactive.xml
+INFO 2010-09-15 14:25:28.279 [main] (PolicyFinderModule) Loading policy: /Users/matt/Develop/projects/hydra-jetty/fedora/default/data/fedora-xacml-policies/repository-policies/default/deny-purge-object-if-active-or-inactive.xml
+INFO 2010-09-15 14:25:28.284 [main] (PolicyFinderModule) Loading policy: /Users/matt/Develop/projects/hydra-jetty/fedora/default/data/fedora-xacml-policies/repository-policies/default/deny-reloadPolicies-if-not-localhost.xml
+INFO 2010-09-15 14:25:28.288 [main] (PolicyFinderModule) Loading policy: /Users/matt/Develop/projects/hydra-jetty/fedora/default/data/fedora-xacml-policies/repository-policies/default/deny-unallowed-file-resolution.xml
+INFO 2010-09-15 14:25:28.291 [main] (PolicyFinderModule) Loading policy: /Users/matt/Develop/projects/hydra-jetty/fedora/default/data/fedora-xacml-policies/repository-policies/default/permit-anything-to-administrator.xml
+INFO 2010-09-15 14:25:28.294 [main] (PolicyFinderModule) Loading policy: /Users/matt/Develop/projects/hydra-jetty/fedora/default/data/fedora-xacml-policies/repository-policies/default/permit-apia-unrestricted.xml
+INFO 2010-09-15 14:25:28.296 [main] (PolicyFinderModule) Loading policy: /Users/matt/Develop/projects/hydra-jetty/fedora/default/data/fedora-xacml-policies/repository-policies/default/permit-dsstate-check-unrestricted.xml
+INFO 2010-09-15 14:25:28.299 [main] (PolicyFinderModule) Loading policy: /Users/matt/Develop/projects/hydra-jetty/fedora/default/data/fedora-xacml-policies/repository-policies/default/permit-oai-unrestricted.xml
+INFO 2010-09-15 14:25:28.301 [main] (PolicyFinderModule) Loading policy: /Users/matt/Develop/projects/hydra-jetty/fedora/default/data/fedora-xacml-policies/repository-policies/default/permit-serverStatus-unrestricted.xml
+INFO 2010-09-15 14:25:28.309 [main] (PolicyFinderModule) Loading policy: /Users/matt/Develop/projects/hydra-jetty/fedora/default/server/fedora-internal-use/fedora-internal-use-backend-service-policies/callback-by_default.xml
+INFO 2010-09-15 14:25:28.313 [main] (PolicyFinderModule) Loading policy: /Users/matt/Develop/projects/hydra-jetty/fedora/default/server/fedora-internal-use/fedora-internal-use-backend-service-policies/callback-by_fedoraInternalCall-1-other-methods.xml
+INFO 2010-09-15 14:25:28.317 [main] (PolicyFinderModule) Loading policy: /Users/matt/Develop/projects/hydra-jetty/fedora/default/server/fedora-internal-use/fedora-internal-use-backend-service-policies/callback-by_fedoraInternalCall-2-other-methods.xml
+INFO 2010-09-15 14:25:28.325 [main] (Server) Post-Initializing org.fcrepo.server.storage.ConnectionPoolManagerImpl
+INFO 2010-09-15 14:25:28.325 [main] (Server) Post-Initializing org.fcrepo.server.validation.DOValidatorModule
+INFO 2010-09-15 14:25:28.327 [main] (Server) Post-Initializing org.fcrepo.server.access.DynamicAccessModule
+INFO 2010-09-15 14:25:28.330 [main] (Server) Post-Initializing org.fcrepo.server.messaging.MessagingModule
+INFO 2010-09-15 14:25:28.330 [main] (Server) Post-Initializing org.fcrepo.server.storage.DefaultExternalContentManager
+INFO 2010-09-15 14:25:28.330 [main] (Server) Post-Initializing org.fcrepo.server.resourceIndex.ResourceIndexModule
+INFO 2010-09-15 14:25:28.330 [main] (Server) Post-Initializing org.fcrepo.server.storage.lowlevel.akubra.AkubraLowlevelStorageModule
+INFO 2010-09-15 14:25:28.601 [main] (Server) Post-Initializing org.fcrepo.server.management.BasicPIDGenerator
+INFO 2010-09-15 14:25:28.623 [main] (BasicServer) Ingesting new system object: fedora-system:ContentModel-3.0
+INFO 2010-09-15 14:25:29.178 [main] (DefaultDOManager) New object PID is fedora-system:ContentModel-3.0
+INFO 2010-09-15 14:25:29.226 [main] (DefaultDOManager) Committing addition of fedora-system:ContentModel-3.0
+INFO 2010-09-15 14:25:29.309 [main] (DefaultDOManager) Updating dissemination index
+INFO 2010-09-15 14:25:29.309 [main] (DefaultDOManager) Updating FieldSearch index
+INFO 2010-09-15 14:25:29.499 [main] (BasicServer) Ingesting new system object: fedora-system:FedoraObject-3.0
+INFO 2010-09-15 14:25:29.623 [main] (DefaultDOManager) New object PID is fedora-system:FedoraObject-3.0
+INFO 2010-09-15 14:25:29.637 [main] (DefaultDOManager) Committing addition of fedora-system:FedoraObject-3.0
+INFO 2010-09-15 14:25:29.687 [main] (DefaultDOManager) Updating dissemination index
+INFO 2010-09-15 14:25:29.687 [main] (DefaultDOManager) Updating FieldSearch index
+INFO 2010-09-15 14:25:29.722 [main] (BasicServer) Ingesting new system object: fedora-system:ServiceDefinition-3.0
+INFO 2010-09-15 14:25:29.824 [main] (DefaultDOManager) New object PID is fedora-system:ServiceDefinition-3.0
+INFO 2010-09-15 14:25:29.856 [main] (DefaultDOManager) Committing addition of fedora-system:ServiceDefinition-3.0
+INFO 2010-09-15 14:25:29.892 [main] (DefaultDOManager) Updating dissemination index
+INFO 2010-09-15 14:25:29.892 [main] (DefaultDOManager) Updating FieldSearch index
+INFO 2010-09-15 14:25:29.909 [main] (BasicServer) Ingesting new system object: fedora-system:ServiceDeployment-3.0
+INFO 2010-09-15 14:25:30.024 [main] (DefaultDOManager) New object PID is fedora-system:ServiceDeployment-3.0
+INFO 2010-09-15 14:25:30.037 [main] (DefaultDOManager) Committing addition of fedora-system:ServiceDeployment-3.0
+INFO 2010-09-15 14:25:30.085 [main] (DefaultDOManager) Updating dissemination index
+INFO 2010-09-15 14:25:30.085 [main] (DefaultDOManager) Updating FieldSearch index
+INFO 2010-09-15 14:25:30.095 [main] (Server) Server startup complete
+WARN 2010-09-15 14:25:35.946 [main] (SolrCore) [development] Solr index directory 'solr/development-core/data/index' doesn't exist. Creating new index...
+WARN 2010-09-15 14:25:36.250 [main] (SpellCheckComponent) No queryConverter defined, using default converter
+WARN 2010-09-15 14:25:36.611 [main] (SolrCore) [test] Solr index directory 'solr/test-core/data/index' doesn't exist. Creating new index...
+WARN 2010-09-15 14:25:36.734 [main] (SpellCheckComponent) No queryConverter defined, using default converter
+INFO 2010-09-15 14:26:14.587 [Shutdown] (AuthFilterJAAS) destroying servlet filter: org.fcrepo.server.security.jaas.AuthFilterJAAS
+INFO 2010-09-15 14:26:14.645 [Shutdown] (Server) Shutting down server
+INFO 2010-09-15 14:26:14.645 [Shutdown] (Server) Shutting down org.fcrepo.server.storage.DefaultDOManager
+INFO 2010-09-15 14:26:14.645 [Shutdown] (Server) Shutting down org.fcrepo.server.oai.FedoraOAIProviderModule
+INFO 2010-09-15 14:26:14.645 [Shutdown] (Server) Shutting down org.fcrepo.server.security.DefaultBackendSecurity
+INFO 2010-09-15 14:26:14.645 [Shutdown] (Server) Shutting down org.fcrepo.server.access.DefaultAccess
+INFO 2010-09-15 14:26:14.645 [Shutdown] (Server) Shutting down org.fcrepo.server.storage.translation.DOTranslatorModule
+INFO 2010-09-15 14:26:14.645 [Shutdown] (Server) Shutting down org.fcrepo.server.search.FieldSearchSQLModule
+INFO 2010-09-15 14:26:14.645 [Shutdown] (Server) Shutting down org.fcrepo.server.management.ManagementModule
+INFO 2010-09-15 14:26:14.645 [Shutdown] (Server) Shutting down org.fcrepo.server.security.DefaultAuthorization
+INFO 2010-09-15 14:26:14.645 [Shutdown] (Server) Shutting down org.fcrepo.server.storage.ConnectionPoolManagerImpl
+INFO 2010-09-15 14:26:14.647 [Shutdown] (ConnectionPool) Shutting down embedded derby database.
+INFO 2010-09-15 14:26:15.521 [Shutdown] (Server) Shutting down org.fcrepo.server.validation.DOValidatorModule
+INFO 2010-09-15 14:26:15.521 [Shutdown] (Server) Shutting down org.fcrepo.server.access.DynamicAccessModule
+INFO 2010-09-15 14:26:15.521 [Shutdown] (Server) Shutting down org.fcrepo.server.messaging.MessagingModule
+INFO 2010-09-15 14:26:15.521 [Shutdown] (Server) Shutting down org.fcrepo.server.storage.DefaultExternalContentManager
+INFO 2010-09-15 14:26:15.521 [Shutdown] (Server) Shutting down org.fcrepo.server.resourceIndex.ResourceIndexModule
+INFO 2010-09-15 14:26:15.521 [Shutdown] (Server) Shutting down org.fcrepo.server.management.BasicPIDGenerator
+INFO 2010-09-15 14:26:15.521 [Shutdown] (Server) Shutting down org.fcrepo.server.storage.lowlevel.akubra.AkubraLowlevelStorageModule
+INFO 2010-09-15 14:26:15.521 [Shutdown] (Server) Server shutdown complete

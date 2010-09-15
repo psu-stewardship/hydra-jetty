@@ -1,0 +1,77 @@
+[STATUS]
+Starting
+2010-09-15 14:25:22PM CDT
+Starting Fedora Server instance
+[/STATUS]
+
+[STATUS]
+Starting
+2010-09-15 14:25:23PM CDT
+Initializing Server
+[/STATUS]
+
+[STATUS]
+Starting
+2010-09-15 14:25:23PM CDT
+Fedora Version: 3.4
+[/STATUS]
+
+[STATUS]
+Starting
+2010-09-15 14:25:23PM CDT
+Fedora Build Date: 2010-08-20 09:56:09 UTC+0100
+[/STATUS]
+
+[STATUS]
+Starting
+2010-09-15 14:25:23PM CDT
+Fedora Build Number: 8768
+[/STATUS]
+
+[STATUS]
+Starting
+2010-09-15 14:25:23PM CDT
+Server Host Name: localhost
+[/STATUS]
+
+[STATUS]
+Starting
+2010-09-15 14:25:23PM CDT
+Server Port: 8080
+[/STATUS]
+
+[STATUS]
+Starting
+2010-09-15 14:25:23PM CDT
+Initializing Modules
+[/STATUS]
+
+[STATUS]
+Starting
+2010-09-15 14:25:25PM CDT
+Post-Initializing Modules
+[/STATUS]
+
+[STATUS]
+Starting
+2010-09-15 14:25:27PM CDT
+Initializing XACML Authorization Module
+[/STATUS]
+
+[STATUS]
+Started
+2010-09-15 14:25:30PM CDT
+[/STATUS]
+
+[STATUS]
+Stopping
+2010-09-15 14:26:14PM CDT
+Shutting down Fedora Server and modules
+[/STATUS]
+
+[STATUS]
+Stopped
+2010-09-15 14:26:15PM CDT
+Shutdown Successful
+[/STATUS]
+
