@@ -28,7 +28,7 @@
       <servlet-class>org.fcrepo.server.ServerController</servlet-class>
       <init-param>
         <param-name>fedora.home</param-name>
-        <param-value>/tmp/fcrepo</param-value>
+        <param-value>fedora/default</param-value>
       </init-param>
       <load-on-startup>2</load-on-startup>
     </servlet>
